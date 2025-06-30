@@ -30,5 +30,43 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAxis("MoveForward", this, &AShooterCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &AShooterCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("Turn", this, &AShooterCharacter::Turn);
+	PlayerInputComponent->BindAxis("LookUp", this, &AShooterCharacter::LookUp);
+	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 }
+
+void AShooterCharacter::MoveForward(float AxisValue)
+{
+	if (Controller && AxisValue != 0.0f)
+	{
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Direction, AxisValue);
+	}
+}
+
+void AShooterCharacter::MoveRight(float AxisValue)
+{
+	if (Controller && AxisValue != 0.0f)
+	{
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(Direction, AxisValue);
+	}
+}
+
+void AShooterCharacter::Turn(float AxisValue)
+{
+	AddControllerYawInput(AxisValue);
+}
+
+void AShooterCharacter::LookUp(float AxisValue)
+{
+	AddControllerPitchInput(AxisValue);
+}
+
 

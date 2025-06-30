@@ -26,4 +26,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private:
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
+	void Turn(float AxisValue);
+	void LookUp(float AxisValue);
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float MoveSpeed = 600.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	float TurnRateGamepad = 45.0f;
 };
