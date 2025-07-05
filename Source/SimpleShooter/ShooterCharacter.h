@@ -29,12 +29,10 @@ public:
 private:
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
-	void Turn(float AxisValue);
-	void LookUp(float AxisValue);
+	void LookUpRate(float AxisValue);
+	void LookRightRate(float AxisValue);
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
-	float MoveSpeed = 600.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
-	float TurnRateGamepad = 45.0f;
+	UPROPERTY(EditAnywhere)
+	float RotationRate = 10;
 };
