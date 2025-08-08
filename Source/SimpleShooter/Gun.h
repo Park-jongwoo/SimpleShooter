@@ -32,4 +32,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* Mesh;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Gun")
+	UParticleSystem* MuzzleFlash;
+
+	UPROPERTY(EditAnywhere)
+	float MaxRange = 1000;
 };
